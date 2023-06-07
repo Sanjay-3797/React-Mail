@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import AuthForm from "./components/AuthForm";
+import Home from "./components/Home";
+import MainNavigation from "./components/MainNavigation";
+import Profile from "./components/Profile";
+import { useSelector } from "react-redux";
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <MainNavigation />
+      <Switch>
+        <Route path="/" exact>
+          <AuthForm />
+        </Route>
+        {isLoggedIn && (
+          <Route path="/home">
+            <Home />
+          </Route>
+        )}
+        {isLoggedIn && (
+          <Route path="/profile">
+            <Profile />
+          </Route>
+        )}
+      </Switch>
+    </React.Fragment>
   );
 }
 
