@@ -32,7 +32,7 @@ const MainNavigation = () => {
           )}
           {isLoggedIn && (
             <li>
-              <Link to="/main">Tracker</Link>
+              <Link to="/main">Inbox</Link>
             </li>
           )}
           {isLoggedIn && (
