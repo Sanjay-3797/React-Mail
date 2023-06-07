@@ -84,7 +84,7 @@ const AuthForm = () => {
       })
       .then((data) => {
         dispatch(authActions.login(data.idToken));
-        history.replace("/home");
+        history.replace("/main");
       })
       .catch((err) => {
         alert(err.message);

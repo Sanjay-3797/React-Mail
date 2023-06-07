@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import MainNavigation from "./components/MainNavigation";
 import Profile from "./components/Profile";
 import { useSelector } from "react-redux";
+import Main from "./components/Main";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
@@ -24,6 +25,11 @@ function App() {
         {isLoggedIn && (
           <Route path="/profile">
             <Profile />
+          </Route>
+        )}
+        {isLoggedIn && (
+          <Route path="/main">
+            <Main />
           </Route>
         )}
       </Switch>
