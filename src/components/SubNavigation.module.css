@@ -1,12 +1,13 @@
 .header {
     width: 100%;
-    height: 5rem;
-    background-color: #38015c;
+    height: 4rem;
+    background-color: #a559d7;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 6.3%;
+    padding: 0 5%;
+    border-top: 5px solid rgb(255, 255, 255);
 }
 
 .logo {
@@ -46,10 +47,10 @@
 }
 
 .header a:hover {
-    color: #c291e2;
+    color: #4a0a75;
 }
 
 .header button:hover {
-    background-color: #c291e2;
+    background-color: #d3b3e9;
     color: #38015c;
 }

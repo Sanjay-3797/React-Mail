@@ -5,12 +5,8 @@ const initialState = {
   isLoggedIn: !!localStorage.getItem("token"),
   login: (token) => {},
   logout: () => {},
-  premium: !localStorage.getItem("activatePremium"),
-  activatePremium: () => {},
-  premiumButton: false,
-  activatePremiumButton: () => {},
-  theme: false,
-  setTheme: () => {},
+  email: localStorage.getItem("email"),
+  setEmail: (email) => {},
 };
 
 const authSlice = createSlice({
@@ -27,14 +23,9 @@ const authSlice = createSlice({
       localStorage.removeItem("token");
       state.isLoggedIn = false;
     },
-    activatePremium(state) {
-      state.premium = !state.premium;
-    },
-    activatePremiumButton(state) {
-      state.premiumButton = !state.premiumButton;
-    },
-    setTheme(state) {
-      state.theme = !state.theme;
+    setEmail(state, action) {
+      state.email = action.payload;
+      localStorage.setItem("email", action.payload);
     },
   },
 });

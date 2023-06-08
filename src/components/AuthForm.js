@@ -47,6 +47,8 @@ const AuthForm = () => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
+    dispatch(authActions.setEmail(enteredEmail));
+
     setIsLoading(true);
     let url;
     if (isLogin) {
