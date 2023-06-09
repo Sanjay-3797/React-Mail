@@ -9,7 +9,7 @@
     color: white;
 }
 
-.inbox h4{
+.inbox h4 {
     text-align: center;
 }
 
@@ -21,11 +21,12 @@
     padding: 10px;
     margin: 10px;
 }
+
 .maillist h2:hover {
     cursor: pointer;
 }
 
-.list p{
+.list p {
     text-align: center;
 }
 

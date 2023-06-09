@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import classes from "./Inbox.module.css";
+import classes from "./Sent.module.css";
 
-const Inbox = () => {
-  const [inbox, setInbox] = useState([]);
+const Sent = () => {
+  const [sent, setSent] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showMail, setShowMail] = useState(false);
   const currentEmail = useSelector((state) => state.email);
@@ -29,9 +29,9 @@ const Inbox = () => {
       const data = (await response).json();
 
       data.then((responseData) => {
-        let inboxMail = [];
+        let sentMail = [];
         for (const key in responseData) {
-          inboxMail.push({
+          sentMail.push({
             id: key,
             fromMail: responseData[key].fromMail,
             toMail: responseData[key].toMail,
@@ -39,7 +39,7 @@ const Inbox = () => {
             body: responseData[key].body,
           });
         }
-        setInbox(inboxMail);
+        setSent(sentMail);
       });
     } catch (error) {
       console.log(error);
@@ -73,16 +73,12 @@ const Inbox = () => {
           <h4>Loading...</h4>
         </div>
       )}
-      {inbox.length > 0 && !showMail && (
+      {sent.length > 0 && !showMail && (
         <section className={classes.inbox}>
           <div>
-            {inbox.map((mail) => (
+            {sent.map((mail) => (
               <div key={mail.id} className={classes.list}>
-                <div
-                  to="/main/inbox"
-                  className={classes.maillist}
-                  onClick={mailToggleHandler}
-                >
+                <div className={classes.maillist} onClick={mailToggleHandler}>
                   <h2>{mail.subject}</h2>
                 </div>
               </div>
@@ -90,13 +86,13 @@ const Inbox = () => {
           </div>
         </section>
       )}
-      {inbox.length > 0 && showMail && (
+      {sent.length > 0 && showMail && (
         <section className={classes.inbox}>
           <div>
-            {inbox.map((mail) => (
+            {sent.map((mail) => (
               <div key={mail.id} className={classes.list}>
                 <h2>{mail.subject}</h2>
-                <h5>{mail.fromMail}</h5>
+                <h5>{mail.toMail}</h5>
                 <p>{mail.body}</p>
                 <div className={classes.actions}>
                   <button onClick={mailToggleHandler}>Back</button>
@@ -117,4 +113,4 @@ const Inbox = () => {
   );
 };
 
-export default Inbox;
+export default Sent;

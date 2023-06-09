@@ -15,7 +15,7 @@ const SubNavigation = () => {
               <Link to="/main/inbox">Inbox</Link>
             </li>
             <li>
-              <Link to="/main">Sent</Link>
+              <Link to="/main/sent">Sent</Link>
             </li>
           </ul>
         </nav>
