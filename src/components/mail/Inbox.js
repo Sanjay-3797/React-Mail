@@ -1,12 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./Inbox.module.css";
+import { authActions } from "../../store";
 
 const Inbox = () => {
   const [inbox, setInbox] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showMail, setShowMail] = useState(false);
+  const [read, setRead] = useState(true);
   const currentEmail = useSelector((state) => state.email);
+  const dispatch = useDispatch();
 
   let currentMail = "";
   for (const letter of currentEmail) {
@@ -17,6 +20,7 @@ const Inbox = () => {
 
   const mailToggleHandler = () => {
     setShowMail((prevState) => !prevState);
+    setRead(false);
   };
 
   const fetchMail = useCallback(async () => {
@@ -49,6 +53,9 @@ const Inbox = () => {
 
   useEffect(() => {
     fetchMail();
+    setInterval(() => {
+      fetchMail();
+    }, 30000);
   }, [fetchMail]);
 
   const deleteMailHandler = async (mailId) => {
@@ -66,6 +73,8 @@ const Inbox = () => {
     }
   };
 
+  dispatch(authActions.setUnRead(inbox.length));
+
   return (
     <React.Fragment>
       {isLoading && (
@@ -73,7 +82,12 @@ const Inbox = () => {
           <h4>Loading...</h4>
         </div>
       )}
-      {inbox.length > 0 && !showMail && (
+      {inbox.length === 0 && !isLoading && (
+        <div className={classes.inbox}>
+          <h4>No Mails Found.</h4>
+        </div>
+      )}
+      {inbox.length > 0 && !showMail && !isLoading && (
         <section className={classes.inbox}>
           <div>
             {inbox.map((mail) => (
@@ -83,7 +97,10 @@ const Inbox = () => {
                   className={classes.maillist}
                   onClick={mailToggleHandler}
                 >
-                  <h2>{mail.subject}</h2>
+                  <h2>
+                    {read && <span>* </span>}
+                    {mail.subject}
+                  </h2>
                 </div>
               </div>
             ))}

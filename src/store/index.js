@@ -7,6 +7,8 @@ const initialState = {
   logout: () => {},
   email: localStorage.getItem("email"),
   setEmail: (email) => {},
+  unRead: localStorage.getItem("unread"),
+  setUnRead: (num) => {},
 };
 
 const authSlice = createSlice({
@@ -26,6 +28,10 @@ const authSlice = createSlice({
     setEmail(state, action) {
       state.email = action.payload;
       localStorage.setItem("email", action.payload);
+    },
+    setUnRead(state, action) {
+      state.unRead = action.payload;
+      localStorage.setItem("unRead", action.payload);
     },
   },
 });
