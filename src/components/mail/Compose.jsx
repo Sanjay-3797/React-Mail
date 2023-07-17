@@ -31,7 +31,7 @@ const Compose = () => {
 
     try {
       const response = await fetch(
-        `https://expense-tracker-48ec2-default-rtdb.firebaseio.com/${toMail}.json`,
+        `https://new-data-4a874-default-rtdb.firebaseio.com/${toMail}.json`,
         {
           method: "POST",
           body: JSON.stringify(composedMail),

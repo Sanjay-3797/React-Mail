@@ -9,6 +9,7 @@ import Main from "./components/Main";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  // const params = useSearchParams
 
   return (
     <React.Fragment>
@@ -23,7 +24,7 @@ function App() {
           </Route>
         )}
         {isLoggedIn && (
-          <Route path="/profile">
+          <Route path="/profile/:id">
             <Profile />
           </Route>
         )}
