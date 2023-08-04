@@ -27,7 +27,7 @@ const Inbox = () => {
     try {
       setIsLoading(true);
       const response = fetch(
-        `https://new-data-4a874-default-rtdb.firebaseio.com/${currentMail}.json`
+        `https://data-base-6259e-default-rtdb.firebaseio.com/inbox/${currentMail}.json`
       );
 
       const data = (await response).json();
@@ -61,7 +61,7 @@ const Inbox = () => {
   const deleteMailHandler = async (mailId) => {
     try {
       const response = await fetch(
-        `https://new-data-4a874-default-rtdb.firebaseio.com/${currentMail}/${mailId}.json`,
+        `https://data-base-6259e-default-rtdb.firebaseio.com/inbox/${currentMail}/${mailId}.json`,
         {
           method: "DELETE",
         }

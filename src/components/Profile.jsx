@@ -1,11 +1,15 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import classes from "./Profile.module.css";
 import { useSelector } from "react-redux";
+import { useParams, } from "react-router-dom";
 
 const Profile = () => {
   const enteredFullNameInputRef = useRef();
   const enteredPhotoUrlInputRef = useRef();
   const token = useSelector((state) => state.token);
+
+  const { id } = useParams();
+  console.log(id);
 
   const fetchUserData = useCallback(async () => {
     try {
@@ -22,11 +26,12 @@ const Profile = () => {
         }
       );
       const data = await response.json();
-      console.log(data.users);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
   }, [token]);
+  
   useEffect(() => {
     fetchUserData();
   }, [fetchUserData]);

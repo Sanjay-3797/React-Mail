@@ -7,6 +7,7 @@ import Inbox from "./mail/Inbox";
 import Sent from "./mail/Sent";
 
 const Main = () => {
+
   return (
     <div>
       <SubNavigation />

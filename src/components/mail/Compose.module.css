@@ -9,7 +9,7 @@
     color: white;
 }
 
-.compose h3 {
+.compose h3, h4 {
     text-align: center;
     color: white;
     text-decoration: none;

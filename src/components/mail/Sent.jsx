@@ -23,7 +23,7 @@ const Sent = () => {
     try {
       setIsLoading(true);
       const response = fetch(
-        `https://new-data-4a874-default-rtdb.firebaseio.com/${currentMail}.json`
+        `https://data-base-6259e-default-rtdb.firebaseio.com/sent/${currentMail}.json`
       );
 
       const data = (await response).json();
@@ -51,26 +51,16 @@ const Sent = () => {
     fetchMail();
   }, [fetchMail]);
 
-  const deleteMailHandler = async (mailId) => {
-    try {
-      const response = await fetch(
-        `https://new-data-4a874-default-rtdb.firebaseio.com/${currentMail}/${mailId}.json`,
-        {
-          method: "DELETE",
-        }
-      );
-      fetchMail();
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <React.Fragment>
       {isLoading && (
         <div className={classes.inbox}>
           <h4>Loading...</h4>
+        </div>
+      )}
+      {sent.length === 0 && !isLoading && (
+        <div className={classes.inbox}>
+          <h4>No Mails Sent.</h4>
         </div>
       )}
       {sent.length > 0 && !showMail && (
@@ -96,13 +86,6 @@ const Sent = () => {
                 <p>{mail.body}</p>
                 <div className={classes.actions}>
                   <button onClick={mailToggleHandler}>Back</button>
-                  <button
-                    onClick={() => {
-                      deleteMailHandler(mail.id);
-                    }}
-                  >
-                    Delete
-                  </button>
                 </div>
               </div>
             ))}

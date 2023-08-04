@@ -37,7 +37,7 @@ const MainNavigation = () => {
           )}
           {isLoggedIn && (
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile/:id">Profile</Link>
             </li>
           )}
           {isLoggedIn && (

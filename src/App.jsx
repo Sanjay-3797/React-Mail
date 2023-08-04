@@ -9,13 +9,12 @@ import Main from "./components/Main";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  // const params = useSearchParams
 
   return (
     <React.Fragment>
       <MainNavigation />
       <Switch>
-        <Route path="/" exact>
+        <Route path="/" exact >
           <AuthForm />
         </Route>
         {isLoggedIn && (
